@@ -1,0 +1,24 @@
+table users {
+    id int [primary key]
+    fullName varchar
+    email varchar
+    cohort int
+}
+
+table posts {
+    id int [primary key]
+    userId int 
+    topicId int
+    title varchar
+    body varchar
+    postDate date 
+}
+
+table topics {
+    id int [primary key]
+    topicName varchar
+    description varchar
+}
+
+Ref: "users".id < "posts"."userId"
+Ref: "topics".id < "posts"."topicId" 
