@@ -11,7 +11,8 @@ table posts {
     topicId int
     title varchar
     body varchar
-    postDate date 
+    postDate date
+    favorite boolean
 }
 
 table topics {
