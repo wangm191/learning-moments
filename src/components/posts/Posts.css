@@ -12,7 +12,7 @@
 }
 
 .post {
-    background-color: var(--white);
+    background-color: var(--green);
     border: 1px solid var(--outline);
     margin: 0.5rem 0;
     border-radius: 0.5rem;
