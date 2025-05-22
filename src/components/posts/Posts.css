@@ -17,6 +17,11 @@
     margin: 0.5rem 0;
     border-radius: 0.5rem;
     padding: 0.5rem;
+    font-size: large;
+}
+
+section.post {
+    margin: 1rem;
 }
   
 /* This targets all the child elements of the element with the .ticket class */
@@ -25,8 +30,22 @@
 }
   
 .post-info {
-      color: var(--outline);
+      color: var(--secondary);
       font-family: "Roboto", sans-serif;
+      font-size: large;
+      font-weight: bolder;
+      padding-right: 0.5rem;
+}
+
+.post:hover {
+    -webkit-transform: scale(1.1);
+    -ms-transform: scale(1.1);
+    transform: scale(1.1);
+}
+
+
+.post-details:hover {
+    transform: none !important;
 }
   
 /* This targets any footer element that is a child of an element with the .ticket class */
@@ -40,6 +59,18 @@
 /* This targets any element that is a child of a footer that is a child of an element with the .ticket class */
 .post > footer > * {
     flex-basis: 22%;
+}
+
+.post-footer {
+    margin: 1rem 0 0.25rem 0;
+    font-style: oblique;
+}
+
+.post-header {
+    font-size: x-large;
+    font-weight: bolder;
+    line-height: 3rem;
+    color: var(--primary);
 }
   
 .filter-btn {
@@ -56,4 +87,9 @@
   
 .filter-bar {
     display: flex;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: flex-end;
 }

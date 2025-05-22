@@ -1,28 +1,17 @@
 import { useEffect } from "react"
 import { useState } from "react"
-import { getAllPosts } from "../../services/postService"
-import { getAllTopics } from "../../services/topicService"
 import { Post } from "./Post"
 import "./Posts.css"
+import { PostFilterBar } from "./PostFilterBar"
+import { Link } from "react-router-dom"
 
-export const PostList = () => {
-
-    const [allPosts, setAllPosts] = useState([])
-    const [allTopics, setAllTopics] = useState([])
+export const PostList = ({ allPosts, allTopics, getAndSetAllPosts }) => {
     const [filteredPosts, setFilteredPosts] = useState([])
     const [topicIdFilter, setTopicIdFilter] = useState("")
     const [searchTerm, setSearchTerm] = useState("")
 
     useEffect(() => {
-        getAllPosts().then((postsArray) => {
-            setAllPosts(postsArray)
-        })
-    }, [])
-
-    useEffect(() => {
-        getAllTopics().then((topicsArray) => {
-            setAllTopics(topicsArray)
-        })
+        getAndSetAllPosts()
     }, [])
 
     useEffect(() => {
@@ -43,36 +32,15 @@ export const PostList = () => {
     return (
         <div className="posts-container">
         <h2>All Posts</h2>
-            <div className="filter-bar">
-                <select
-                    onChange={(event) => setTopicIdFilter(Number(event.target.value))}
-                >
-                    <option value="">
-                        {topicIdFilter === "" ? "Select Topic" : "All Posts"}
-                    </option>
-                    {allTopics.map((topicObj) => (
-                        
-                        <option
-                            key={topicObj.id}
-                            className="filter-topic"
-                            value={topicObj.id}
-                        >
-                            {topicObj.name}
-                        </option>
-                    ))}
-                </select>
-                <input 
-                    type="text" 
-                    placeholder="Search Posts" 
-                    className="post-search"
-                    onChange={(event) => {
-                        setSearchTerm(event.target.value)
-                    }}
-                />
-            </div>
+            <PostFilterBar allTopics={allTopics} topicIdFilter={topicIdFilter} setTopicIdFilter={setTopicIdFilter} setSearchTerm={setSearchTerm} />
             <article className="posts">
                 { filteredPosts.map((postObj) => {
-                    return <Post post={postObj} key={postObj.id}/>
+                    
+                    return (
+                        <Link to={`/post/${postObj.id}`} key={postObj.id} >
+                            <Post post={postObj} />
+                        </Link>
+                    )
                 })}
             </article>
         </div>
